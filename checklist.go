@@ -5,6 +5,8 @@
 
 package trello
 
+import "fmt"
+
 // Checklist represents Trello card's checklists.
 // A card can have one zero or more checklists.
 // https://developers.trello.com/reference/#checklist-object
@@ -30,4 +32,10 @@ type CheckItem struct {
 type CheckItemState struct {
 	IDCheckItem string `json:"idCheckItem"`
 	State       string `json:"state"`
+}
+
+// CreateChecklistItem creates specified checklist item
+func (c *Client) CreateChecklistItem(item *CheckItem, args Arguments) error {
+	path := fmt.Sprintf("checklists/%s/checkItems", item.IDChecklist)
+	return c.Post(path, args, CheckItem{})
 }
