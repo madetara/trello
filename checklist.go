@@ -37,5 +37,5 @@ type CheckItemState struct {
 // CreateChecklistItem creates specified checklist item
 func (c *Client) CreateChecklistItem(item *CheckItem, args Arguments) error {
 	path := fmt.Sprintf("checklists/%s/checkItems", item.IDChecklist)
-	return c.Post(path, args, CheckItem{})
+	return c.Post(path, args, &CheckItem{})
 }
